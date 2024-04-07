@@ -1,0 +1,21 @@
+        <h1>Accounts List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Customer ID</th>
+                    <th>Balance</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% accounts.forEach(function(account) { %>
+                    <tr>
+                        <td><%= account.id %></td>
+                        <td><%= account.customerId %></td>
+                        <td><%= account.balance %></td>
+                        <td><%= account.type %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>

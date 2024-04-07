@@ -1,0 +1,18 @@
+
+        <h1>Customers List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% customers.forEach(function(customer) { %>
+                    <tr>
+                        <td><%= customer.id %></td>
+                        <td><%= customer.name %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>

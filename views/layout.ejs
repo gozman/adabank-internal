@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          document.getElementById('searchForm').onsubmit = function() {
+            var customerId = document.getElementById('customerId').value;
+            this.action = '/accounts/customer/' + customerId;
+          };
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada Bank Internal</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            color: black;
+            font-family: 'Times New Roman', serif;
+        }
+        .header-bar {
+            background-color: black;
+            color: white;
+            text-align: left;
+            padding: 20px 40px; /* Increased padding for more prominence */
+            font-size: 24px; /* Increased font size for more prominence */
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Changed font to Comic Sans */
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .content {
+            margin-top: 80px; /* Increased margin to accommodate larger header */
+            padding: 20px;
+        }
+        form.stacked {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px; /* Limit form width */
+            gap: 10px; /* Adds space between form elements */
+        }
+        form.stacked input {
+            padding: 10px;
+            margin: 5px 0; /* Adds margin to top and bottom for neatness */
+        }
+        form.stacked button {
+            padding: 10px;
+            margin: 5px 0; /* Adds margin to top and bottom for neatness */
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        Ada Bank Internal Management Tool
+    </div>
+    <div class="content">
+        <%- include(bodyTemplate) %>
+    </div>
+    <div class="footer">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.pathname !== '/') {
+                var footer = document.querySelector('.footer');
+                var link = document.createElement('a');
+                link.href = "/";
+                link.textContent = "Main Menu";
+                footer.appendChild(link);
+            }
+        });
+    </script>
+</body>
+</html>
