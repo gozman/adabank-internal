@@ -133,12 +133,12 @@ app.get('/customers/search/:name', (req, res) => {
 });
 
 // Transfer money between accounts
-app.post('/transfer', (req, res) => {
+app.post('/accounts/customer/:customerId/transfer', (req, res) => {
   const { fromId, toId, amount } = req.body;
   console.log(req.body);
-  const fromAccount = accounts.find(acc => acc.id === parseInt(fromId));
+  const fromAccount = accounts.find(acc => acc.id === parseInt(fromId) && acc.customerId === parseInt(req.params.customerId));
   const toAccount = accounts.find(acc => acc.id === parseInt(toId));
-  console.log(`Received Transfer IDs: From Account ID: ${fromId}, To Account ID: ${toId}`);
+  console.log(`Received Transfer IDs: From Account ID: ${fromId}, To Account ID: ${toId}, Customer ID: ${req.params.customerId}`);
   if (!fromAccount || !toAccount) {
     return res.status(404).send('One or both accounts not found');
   }
@@ -151,13 +151,13 @@ app.post('/transfer', (req, res) => {
   toAccount.balance += parseInt(amount);
 
   if (req.accepts('html')) {
-    res.redirect('/accounts');
+    res.redirect(`/accounts/customer/${req.params.customerId}`);
   } else {
     res.json({ fromAccount, toAccount });
   }
 });
 
-app.get('/transfer', (req, res) => {
+app.get('/accounts/customer/:customerId/transfer', (req, res) => {
   res.render('layout', {
     bodyTemplate: 'transfer'
   });
